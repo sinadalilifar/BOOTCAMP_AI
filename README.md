@@ -75,7 +75,7 @@ data = data.values.astype('float32')
 scaler = MinMaxScaler(feature_range=(0, 1))
 data = scaler.fit_transform(data)
 ```
-نایج پیشنهادی با LSTM
+### نتایج پیشنهادی با LSTM
  <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/LSTM_train_vs_validation_loss.png" width="300"/>
  <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/LSTM_true_vs_predictions.png" width="300"/>
 ##  Question 2:
@@ -88,7 +88,7 @@ Sugestation Solution:
 
 
 
-نایج پیشنهادی با RNN
+### نتایج پیشنهادی با RNN
  <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/RNN_train_vs_validation_loss_rnn.png" width="300"/>
  <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/RNN_true_vs_predictions_rnn.png" width="300"/>
 
@@ -120,7 +120,7 @@ plt.plot(np.arange(len(train_predict_combined) + (look_back * 2) + 1, len(data) 
 plt.show()
 
 ```
-نایج پیشنهادی با RNN + LSTM
+### نتایج پیشنهادی با RNN + LSTM
 
 
  <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/results/all_train_vs_validation_loss_advanced_with_bidirectional_attention.png" width="300"/>
