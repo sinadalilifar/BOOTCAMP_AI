@@ -28,9 +28,6 @@ Write your Dangerfiles in Python.
 
   </div>
 
-
- 
- 
  # تمارین هفته‌ی اول
  لینک ارسال پاسخ :
  https://forms.gle/drkwhMqnV7dvjBrt8
@@ -129,7 +126,10 @@ plt.show()
 
 <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/SAMPLE.PNG" width="1000"/>
 
- 
+   </div>
+  </div>
+<div style="text-align: Right ">
+
 
 
 3) Jonas Raschidie >= Mohammad Amin Rashidi
@@ -147,6 +147,8 @@ plt.show()
 14) محمد جواد کویری منش 16 خرداد
 15) مهربد خشوعی ۱۸ خرداد
 
+  </div>
+  </div>
 
 
   </div>
