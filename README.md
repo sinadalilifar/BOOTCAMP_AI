@@ -8,7 +8,7 @@ Write your Dangerfiles in Python.
 :warning: `danger-python` is currently work in progress. Breaking changes may occur.
 
 <div align="center">
-  <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/p1.PNG" width="1000"/>
+  <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/Capture.PNG" width="1000"/>
   <div>&nbsp;</div>
   <div align="center">
     <b><font size="5">Hamed Aghapanah </font></b>
@@ -75,7 +75,9 @@ data = data.values.astype('float32')
 scaler = MinMaxScaler(feature_range=(0, 1))
 data = scaler.fit_transform(data)
 ```
-
+نایج پیشنهادی با LSTM
+ <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/LSTM_train_vs_validation_loss.png" width="500"/>
+ <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/LSTM_true_vs_predictions.png" width="500"/>
 ##  Question 2:
 Use an RNN network to perform the same task as in Question 1.
 
@@ -83,6 +85,12 @@ Sugestation Solution:
 ```python
  from tensorflow.keras.layers import SimpleRNN
 ```
+
+
+
+نایج پیشنهادی با RNN
+ <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/RNN_train_vs_validation_loss_rnn.png" width="500"/>
+ <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/RNN_true_vs_predictions_rnn.png" width="500"/>
 
 ##  Question 3:
 Implement a network that combines both RNN and LSTM to achieve the best prediction results.
@@ -112,7 +120,11 @@ plt.plot(np.arange(len(train_predict_combined) + (look_back * 2) + 1, len(data) 
 plt.show()
 
 ```
+نایج پیشنهادی با RNN + LSTM
 
+
+ <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/RNN_train_vs_validation_loss_rnn.png" width="500"/>
+ <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/RNN_true_vs_predictions_rnn.png" width="500"/>
 
 <div style="text-align: Right; color: red; font-size: 30px;">
  
