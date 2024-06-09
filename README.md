@@ -29,7 +29,9 @@ Write your Dangerfiles in Python.
   </div>
 
  # تمارین هفته‌ی اول
+ 
  لینک ارسال پاسخ :
+ 
  https://forms.gle/drkwhMqnV7dvjBrt8
       
    <b><font size="5">
@@ -42,9 +44,13 @@ Write your Dangerfiles in Python.
 مثلا برای تبدیل دمای 100 درجه سانتیگراد به فارنهایت ورودی زیر را بگیرد و خروجی بدهد:
 100,    C,F
 
+
   # تمارین هفته‌ی دوم و سوم
+  
    لینک ارسال پاسخ :
+   
 https://docs.google.com/forms/d/e/1FAIpQLScT4zcqblgRqSl87XusKsNwJ_BXMyF7UtypdPMLvWG0ERLeOw/viewform?usp=sf_link
+
 
 1) با استفاده از مجموعه داده بوستون، یک مدل رگرسیون خطی ایجاد کنید که قیمت مسکن را پیش‌بینی کند. سپس معیارهای دقت مدل را ارزیابی کنید.(حداقل ۲ روش)
 2) از مجموعه داده کالیفرنیا، یک مدل رگرسیون چندجمله‌ای ایجاد کنید که میانگین تعداد اتاق‌ها را بر اساس ویژگی‌های دیگر مسکن پیش‌بینی کند. سپس دقت مدل را ارزیابی کنید.(حداقل ۲ 3روش)
@@ -52,7 +58,9 @@ https://docs.google.com/forms/d/e/1FAIpQLScT4zcqblgRqSl87XusKsNwJ_BXMyF7UtypdPML
 4) با استفاده از مجموعه داده Breast Cancer، یک مدل طبقه‌بندی SVM ایجاد کنید که توانایی تشخیص بین سرطان خوش‌خیم و سرطان بدخیم را بر اساس ویژگی‌های موجود داشته باشد. سپس دقت مدل را ارزیابی کنید.(حداقل ۲ روش)
 
  # تمارین هفته‌ی چهارم و پنجم
+ 
  لینک ارسال پاسخ :
+ 
 
 
 ## Question 1:
@@ -76,8 +84,10 @@ scaler = MinMaxScaler(feature_range=(0, 1))
 data = scaler.fit_transform(data)
 ```
 ### نتایج پیشنهادی با LSTM
+
  <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/LSTM_train_vs_validation_loss.png" width="300"/>
  <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/LSTM_true_vs_predictions.png" width="300"/>
+ 
 ##  Question 2:
 Use an RNN network to perform the same task as in Question 1.
 
@@ -89,8 +99,10 @@ Sugestation Solution:
 
 
 ### نتایج پیشنهادی با RNN
- <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/RNN_train_vs_validation_loss_rnn.png" width="300"/>
+
+ <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/RNN_train_vs_validation_loss_rnn.png" width="300"/> 
  <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/RNN_true_vs_predictions_rnn.png" width="300"/>
+ 
 
 ##  Question 3:
 Implement a network that combines both RNN and LSTM to achieve the best prediction results.
@@ -120,12 +132,16 @@ plt.plot(np.arange(len(train_predict_combined) + (look_back * 2) + 1, len(data) 
 plt.show()
 
 ```
+
 ### نتایج پیشنهادی با RNN + LSTM
+
 
 
  <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/results/all_train_vs_validation_loss_advanced_with_bidirectional_attention.png" width="300"/>
  <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/results/all_true_vs_predictions_advanced_with_bidirectional_attention.png" width="300"/>
  <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/best_advanced_model_with_bidirectional_attention.png" width="300"/>
+
+ 
  
 
 <div style="text-align: Right; color: red; font-size: 30px;">
@@ -136,30 +152,22 @@ plt.show()
 
 1) حامد آقاپناه   10 خرداد
   ( پس از بارگزاری عکس و برنامه به اسم خودتان، آنرا در زیر اسمتان نمایش دهید )
-
-
-<img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/SAMPLE.PNG" width="1000"/>
-
-   </div>
-  </div>
-<div style="text-align: Right ">
-
-
-
-3) Jonas Raschidie >= Mohammad Amin Rashidi
-
-4) محمد محمدی
-5) جعفر آقاجاني  11 خرداد
-6) حمید رضا قربانی 11 خرداد
-7) انسیه باقری ۱۱ خرداد
-8) حمیدرضا حسن زاده 11 خرداد
-9) بشری ربانی 11 خرداد
-10) علیرضا مهدی 11 خرداد
-11) زهزه سورانی ۱۱ خرداد
-12) فاطمه فولادی ۱۱ خرداد
-13) محسن فیاضی 12 خرداد
-14) محمد جواد کویری منش 16 خرداد
-15) مهربد خشوعی ۱۸ خرداد
+  
+2)  علی سعیدی راد   11 خرداد
+3) محد امین رشیدی  11 خرداد   Jonas Raschidie >= Mohammad Amin Rashidi
+4) دکتر راستی 11 خرداد   
+5) محمد محمدی 11 خرداد
+6) جعفر آقاجاني  11 خرداد
+7) حمید رضا قربانی 11 خرداد
+8) انسیه باقری ۱۱ خرداد
+9) حمیدرضا حسن زاده 11 خرداد
+10) بشری ربانی 11 خرداد
+11) علیرضا مهدی 11 خرداد
+12) زهزه سورانی ۱۱ خرداد
+13) فاطمه فولادی ۱۱ خرداد
+14) محسن فیاضی 12 خرداد
+15) محمد جواد کویری منش 16 خرداد
+16) مهربد خشوعی ۱۸ خرداد
 
   </div>
   </div>
