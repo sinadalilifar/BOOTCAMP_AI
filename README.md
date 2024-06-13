@@ -163,6 +163,7 @@ plt.show()
 9) حمیدرضا حسن زاده 11 خرداد
 10) بشری ربانی 11 خرداد
 11) علیرضا مهدی 11 خرداد
+<img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/Alireza%20Mahdi.png" width="1000"/>
 12) زهزه سورانی ۱۱ خرداد
 13) فاطمه فولادی ۱۱ خرداد
 14) محسن فیاضی 12 خرداد
