@@ -155,10 +155,27 @@ plt.show()
   
 2)  محمد کریمی   11 خرداد
 3) محد امین رشیدی  11 خرداد   Jonas Raschidie >= Mohammad Amin Rashidi
-4) سپیده شفیعی 11 خرداد   
+4) سپیده شفیعی 11 خرداد
 5) محمد محمدی 11 خرداد
-6) جعفر آقاجاني  11 خرداد
-7) حمید رضا قربانی 11 خرداد
+
+
+            نمایش جواب پروژه تحلیل داده های EXAMPLE1 => تحلیل با شبکه LSTM
+ <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/mohammad_mohammadi_example1_code_and_answer/example1_1_CO.png" width="500"/> 
+      
+ <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/mohammad_mohammadi_example1_code_and_answer/example1_2_CO.png" width="500"/>
+
+<img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/mohammad_mohammadi_example1_code_and_answer/example1_3_CO.png" width="500"/>
+
+<img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/mohammad_mohammadi_example1_code_and_answer/example1_1_NOx.png" width="500"/>
+
+<img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/mohammad_mohammadi_example1_code_and_answer/example1_2_NOx.png" width="500"/>
+
+ <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/mohammad_mohammadi_example1_code_and_answer/example1_3_NOx.png" width="500"/>
+
+
+
+7) جعفر آقاجاني  11 خرداد
+8) حمید رضا قربانی 11 خرداد
    NOx
    <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/Ghorbani-NOx.png" width="1000"/>
 
