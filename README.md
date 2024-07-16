@@ -52,10 +52,204 @@ Write your Dangerfiles in Python.
 https://docs.google.com/forms/d/e/1FAIpQLScT4zcqblgRqSl87XusKsNwJ_BXMyF7UtypdPMLvWG0ERLeOw/viewform?usp=sf_link
 
 
-1) با استفاده از مجموعه داده بوستون، یک مدل رگرسیون خطی ایجاد کنید که قیمت مسکن را پیش‌بینی کند. سپس معیارهای دقت مدل را ارزیابی کنید.(حداقل ۲ روش)
-2) از مجموعه داده کالیفرنیا، یک مدل رگرسیون چندجمله‌ای ایجاد کنید که میانگین تعداد اتاق‌ها را بر اساس ویژگی‌های دیگر مسکن پیش‌بینی کند. سپس دقت مدل را ارزیابی کنید.(حداقل ۲ 3روش)
-3) با استفاده از مجموعه داده Iris، یک مدل طبقه‌بندی ساده ایجاد کنید که گونه گل را بر اساس ویژگی‌هایش تشخیص دهد. سپس دقت مدل را ارزیابی کنید.(حداقل ۲ روش)
-4) با استفاده از مجموعه داده Breast Cancer، یک مدل طبقه‌بندی SVM ایجاد کنید که توانایی تشخیص بین سرطان خوش‌خیم و سرطان بدخیم را بر اساس ویژگی‌های موجود داشته باشد. سپس دقت مدل را ارزیابی کنید.(حداقل ۲ روش)
+
+2) با استفاده از مجموعه داده بوستون، یک مدل رگرسیون خطی ایجاد کنید که قیمت مسکن را پیش‌بینی کند. سپس معیارهای دقت مدل را ارزیابی کنید.(حداقل ۲ روش)
+از آنجا که مجموعه داده بوستون دیگر در scikit-learn موجود نیست، از مجموعه داده‌های جایگزین مانند مجموعه داده‌های مسکن کالیفرنیا و یا هر داده دلخواهی که دارید، استفاده خواهیم کرد. 
+   ## Sugestation Solution:
+```python
+import pandas as pd
+import numpy as np
+from sklearn.datasets import fetch_california_housing
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+بارگیری مجموعه داده مسکن کالیفرنیا
+housing = fetch_california_housing()
+data = pd.DataFrame(housing.data, columns=housing.feature_names)
+data['PRICE'] = housing.target
+# تقسیم داده‌ها به مجموعه‌های آموزش و تست
+X = data.drop('PRICE', axis=1)
+y = data['PRICE']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# ایجاد و آموزش مدل رگرسیون خطی
+model = LinearRegression()
+model.fit(X_train, y_train)
+# پیش‌بینی قیمت‌ها
+y_pred = model.predict(X_test)
+# ارزیابی مدل
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+mse, r2
+ 
+```
+
+    از مجموعه داده کالیفرنیا، یک مدل رگرسیون چندجمله‌ای ایجاد کنید که میانگین تعداد اتاق‌ها را بر اساس ویژگی‌های دیگر مسکن پیش‌بینی کند. سپس دقت مدل را ارزیابی کنید.(حداقل ۲  روش)
+
+
+  
+## Sugestation Solution:
+
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import fetch_california_housing
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+# بارگیری مجموعه داده مسکن کالیفرنیا
+housing = fetch_california_housing()
+data = pd.DataFrame(housing.data, columns=housing.feature_names)
+data['AveRooms'] = data['AveRooms']
+
+# انتخاب ویژگی‌ها و هدف
+X = data.drop('AveRooms', axis=1)
+y = data['AveRooms']
+
+# تقسیم داده‌ها به مجموعه‌های آموزش و تست
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# ایجاد و تبدیل ویژگی‌ها به ویژگی‌های چندجمله‌ای
+poly = PolynomialFeatures(degree=2)
+X_train_poly = poly.fit_transform(X_train)
+X_test_poly = poly.transform(X_test)
+
+# ایجاد و آموزش مدل رگرسیون خطی با ویژگی‌های چندجمله‌ای
+model = LinearRegression()
+model.fit(X_train_poly, y_train)
+
+# پیش‌بینی تعداد اتاق‌ها
+y_pred = model.predict(X_test_poly)
+
+# ارزیابی مدل
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Squared Error (MSE): {mse}")
+print(f"R-squared (R2): {r2}")
+
+# نمودار مقادیر واقعی در مقابل مقادیر پیش‌بینی‌شده
+plt.figure(figsize=(10, 6))
+plt.scatter(y_test, y_pred, color='blue')
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], color='red', linestyle='--')
+plt.xlabel('مقادیر واقعی')
+plt.ylabel('مقادیر پیش‌بینی‌شده')
+plt.title('نمودار مقادیر واقعی در مقابل مقادیر پیش‌بینی‌شده')
+plt.show()
+```
+5) با استفاده از مجموعه داده Iris، یک مدل طبقه‌بندی ساده ایجاد کنید که گونه گل را بر اساس ویژگی‌هایش تشخیص دهد. سپس دقت مدل را ارزیابی کنید.(حداقل ۲ روش)
+
+## Sugestation Solution:
+
+```python
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay
+
+# بارگیری مجموعه داده Iris
+iris = load_iris()
+data = pd.DataFrame(iris.data, columns=iris.feature_names)
+data['species'] = iris.target
+
+# انتخاب ویژگی‌ها و هدف
+X = data.drop('species', axis=1)
+y = data['species']
+
+# تقسیم داده‌ها به مجموعه‌های آموزش و تست
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# استانداردسازی داده‌ها
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# ایجاد و آموزش مدل K-Nearest Neighbors
+knn = KNeighborsClassifier(n_neighbors=3)
+knn.fit(X_train, y_train)
+
+# پیش‌بینی گونه گل
+y_pred = knn.predict(X_test)
+
+# ارزیابی مدل
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy}")
+
+# ماتریس درهم‌ریختگی
+cm = confusion_matrix(y_test, y_pred, labels=knn.classes_)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=iris.target_names)
+disp.plot()
+
+# نمایش نمودار
+plt.title('Confusion Matrix')
+plt.show()
+
+```
+
+<img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/results/download.png" width="300"/>
+7) با استفاده از مجموعه داده Breast Cancer، یک مدل طبقه‌بندی SVM ایجاد کنید که توانایی تشخیص بین سرطان خوش‌خیم و سرطان بدخیم را بر اساس ویژگی‌های موجود داشته باشد. سپس دقت مدل را ارزیابی کنید.(حداقل ۲ روش)
+
+
+## Sugestation Solution:
+
+
+```python
+import pandas as pd
+import numpy as np
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, ConfusionMatrixDisplay
+import matplotlib.pyplot as plt
+
+# بارگیری مجموعه داده Breast Cancer
+cancer = load_breast_cancer()
+data = pd.DataFrame(cancer.data, columns=cancer.feature_names)
+data['target'] = cancer.target
+
+# انتخاب ویژگی‌ها و هدف
+X = data.drop('target', axis=1)
+y = data['target']
+
+# تقسیم داده‌ها به مجموعه‌های آموزش و تست
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# استانداردسازی داده‌ها
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# ایجاد و آموزش مدل SVM
+svm = SVC(kernel='linear')
+svm.fit(X_train, y_train)
+
+# پیش‌بینی برچسب‌ها
+y_pred = svm.predict(X_test)
+
+# ارزیابی مدل
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy}")
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred, target_names=cancer.target_names))
+
+# ماتریس درهم‌ریختگی
+cm = confusion_matrix(y_test, y_pred)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=cancer.target_names)
+disp.plot()
+
+# نمایش نمودار
+plt.title('Confusion Matrix')
+plt.sow()
+
+```
+   <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/results/download (1).png" width="300"/>
 
  # تمارین هفته‌ی چهارم و پنجم
  
@@ -66,7 +260,9 @@ https://docs.google.com/forms/d/e/1FAIpQLScT4zcqblgRqSl87XusKsNwJ_BXMyF7UtypdPML
 ## Question 1:
 Read a dataset from the internet and implement an LSTM network that can perform predictions.
 
-Sugestation Solution:
+
+## Sugestation Solution:
+
 ```python
 import numpy as np
 import pandas as pd
@@ -197,8 +393,6 @@ plt.show()
 
   </div>
   </div>
-
-
   </div>
   </div>
   </div>
