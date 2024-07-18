@@ -1,0 +1,111 @@
+(* @ Author == Mohammad Amin Rashidi == Jonas *)
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score, mean_squared_error, mean_absolute_error
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense
+import seaborn as sns
+
+def load_and_preprocess_data(file_path):
+    df = pd.read_excel(file_path)
+    df['date'] = pd.to_datetime(df['date'])
+    return df
+def create_dataset(dataset, look_back=1):
+    X, y = [], []
+    for i in range(len(dataset) - look_back):
+        X.append(dataset[i:(i + look_back), 0])
+        y.append(dataset[i + look_back, 0])
+    return np.array(X), np.array(y)
+
+def plot_results(actual, predicted, title, xlabel, ylabel):
+    plt.figure(figsize=(10, 6))
+    plt.scatter(actual, predicted, color='orange', label='Prediction')
+    plt.plot(actual, actual, color='blue', linestyle='-', label='Actual')
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.title(title)
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+df_lr = load_and_preprocess_data(r'C:\Users\User\Downloads\example11.xlsx')
+df_lr['day'] = df_lr['date'].dt.day
+df_lr = pd.get_dummies(df_lr, columns=['Station'], prefix='Station')
+X_lr = df_lr.drop(['CO ppm', 'date'], axis=1)
+y_lr = df_lr['CO ppm']
+X_train_lr, X_test_lr, y_train_lr, y_test_lr = train_test_split(X_lr, y_lr, test_size=0.2, random_state=42)
+model_lr = LinearRegression()
+model_lr.fit(X_train_lr, y_train_lr)
+y_pred_lr = model_lr.predict(X_test_lr)
+r2_lr = r2_score(y_test_lr, y_pred_lr)
+print(f"Linear Regression R2 Score: {r2_lr:.4f}")
+plot_results(y_test_lr, y_pred_lr, 'Actual vs Predicted CO ppm (Linear Regression)', 'Actual CO ppm', 'Predicted CO ppm')
+df_lstm = load_and_preprocess_data(r'C:\Users\User\Downloads\example11.xlsx')
+df_lstm.set_index('date', inplace=True)
+df_lstm = df_lstm['NOx ppb'].resample('D').mean().dropna()
+
+if len(df_lstm) < 2:
+    print("Error: Not enough data for LSTM model after preprocessing.")
+    print(f"Number of samples: {len(df_lstm)}")
+else:
+
+    scaler = MinMaxScaler(feature_range=(0, 1))
+    scaled_data_lstm = scaler.fit_transform(df_lstm.values.reshape(-1, 1))
+ 
+    look_back_lstm = min(30, len(scaled_data_lstm) // 2)  # Adjust look_back if necessary
+    X_lstm, y_lstm = create_dataset(scaled_data_lstm, look_back_lstm)
+
+    if len(X_lstm) < 2:
+        print(f"Error: Not enough samples after creating dataset. Number of samples: {len(X_lstm)}")
+    else:
+       
+        test_size = min(0.2, 1 / len(X_lstm))  # Ensure at least one sample in each set
+        X_train_lstm, X_test_lstm, y_train_lstm, y_test_lstm = train_test_split(
+            X_lstm, y_lstm, test_size=test_size, random_state=42
+        )
+        # Reshape input for LSTM [samples, time steps, features]
+        X_train_lstm = np.reshape(X_train_lstm, (X_train_lstm.shape[0], X_train_lstm.shape[1], 1))
+        X_test_lstm = np.reshape(X_test_lstm, (X_test_lstm.shape[0], X_test_lstm.shape[1], 1))
+
+        model_lstm = Sequential([
+            LSTM(50, return_sequences=True, input_shape=(look_back_lstm, 1)),
+            LSTM(50),
+            Dense(1)
+        ])
+        model_lstm.compile(optimizer='adam', loss='mean_squared_error')
+        history = model_lstm.fit(X_train_lstm, y_train_lstm, epochs=50, batch_size=1, validation_split=0.2, verbose=0)
+
+        train_predict_lstm = model_lstm.predict(X_train_lstm)
+        test_predict_lstm = model_lstm.predict(X_test_lstm)
+
+        train_predict_lstm = scaler.inverse_transform(train_predict_lstm)
+        y_train_lstm = scaler.inverse_transform(y_train_lstm.reshape(-1, 1))
+        test_predict_lstm = scaler.inverse_transform(test_predict_lstm)
+        y_test_lstm = scaler.inverse_transform(y_test_lstm.reshape(-1, 1))
+        train_rmse_lstm = np.sqrt(mean_squared_error(y_train_lstm, train_predict_lstm))
+        test_rmse_lstm = np.sqrt(mean_squared_error(y_test_lstm, test_predict_lstm))
+        train_mae_lstm = mean_absolute_error(y_train_lstm, train_predict_lstm)
+        test_mae_lstm = mean_absolute_error(y_test_lstm, test_predict_lstm)
+        train_r2_lstm = r2_score(y_train_lstm, train_predict_lstm)
+        test_r2_lstm = r2_score(y_test_lstm, test_predict_lstm)
+        print(f"LSTM Train RMSE: {train_rmse_lstm:.4f}")
+        print(f"LSTM Test RMSE: {test_rmse_lstm:.4f}")
+        print(f"LSTM Train MAE: {train_mae_lstm:.4f}")
+        print(f"LSTM Test MAE: {test_mae_lstm:.4f}")
+        print(f"LSTM Train R^2: {train_r2_lstm:.4f}")
+        print(f"LSTM Test R^2: {test_r2_lstm:.4f}")
+
+        plt.figure(figsize=(12, 6))
+        plt.plot(history.history['loss'], label='Train Loss')
+        plt.plot(history.history['val_loss'], label='Validation Loss')
+        plt.title('LSTM Model Loss')
+        plt.xlabel('Epoch')
+        plt.ylabel('Loss')
+        plt.legend()
+        plt.show()
+
