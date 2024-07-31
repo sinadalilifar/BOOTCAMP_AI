@@ -179,7 +179,7 @@ from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense
 
-url = 'https://raw.githubusercontent.com/jbrownlee/Datasets/master/airline-passengers.csv'  # تغییر لینک به دیتاست دلخواه خود
+url = 'https://raw.githubusercontent.com/jbrownlee/Datasets/master/airline-passengers.csv'
 df = pd.read_csv(url, usecols=[1], engine='python')
 
 data = df.values.astype('float32')
