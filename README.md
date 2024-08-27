@@ -392,18 +392,25 @@ The Result of Predictions and simulations <= Jonas Rashidi =>
    Co
    <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/Ghorbani-Co.png" width="1000"/>
 
-   
-9) انسیه باقری ۱۱ خرداد
-10) حمیدرضا حسن زاده 11 خرداد
-11) بشری ربانی 11 خرداد
-12) علیرضا مهدی 11 خرداد
+   برخی نمودارهای حل تمرین.
+<img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/HR.Ghorbani%20-%20W2-3%20-Q2.JPG" width="1000"/>
+<img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/HR.Ghorbani%20-%20W2-3%20-Q3.JPG" width="1000"/>
+<img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/HR.Ghorbani%20-%20W2-3%20-Q4.JPG" width="1000"/>
+<img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/HR.Ghorbani-W4-5-Q1.JPG" width="1000"/>
+<img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/HR.Ghorbani-W4-5-Q3.JPG" width="1000"/>
+<img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/HR.Ghorbani-W4-5-Q2.JPG" width="1000"/>
+
+10) انسیه باقری ۱۱ خرداد
+11) حمیدرضا حسن زاده 11 خرداد
+12) بشری ربانی 11 خرداد
+13) علیرضا مهدی 11 خرداد
 <img src="https://github.com/Hamed-Aghapanah/BOOTCAMP_AI/blob/main/Alireza%20Mahdi.png" width="1000"/>
-13) زهزه سورانی ۱۱ خرداد
-14) فاطمه فولادی ۱۱ خرداد
-15) محسن فیاضی 12 خرداد
-16) محمد جواد کویری منش 16 خرداد
-17) مهربد خشوعی ۱۸ خرداد
-18) قاسمیان
+14) زهزه سورانی ۱۱ خرداد
+15) فاطمه فولادی ۱۱ خرداد
+16) محسن فیاضی 12 خرداد
+17) محمد جواد کویری منش 16 خرداد
+18) مهربد خشوعی ۱۸ خرداد
+19) قاسمیان
 18) اسمتان را اینجا بنویسید
 
 
